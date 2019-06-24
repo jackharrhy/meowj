@@ -1,0 +1,25 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/rust:latest
+
+    working_directory: ~/rust-meowj
+
+    steps:
+      - checkout
+      - run:
+          name: Version information
+          command: |
+            rustc --version
+            cargo --version
+            rustup --version
+      - run:
+          name: Test
+          command: RUST_BACKTRACE=1 cargo test
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build
