@@ -1,7 +1,7 @@
-[![CircleCI](https://circleci.com/gh/jackharrhy/meowj.svg?style=svg)](https://circleci.com/gh/jackharrhy/meowj)
-
 meowj
 =====
+
+[![CircleCI](https://circleci.com/gh/jackharrhy/meowj.svg?style=svg)](https://circleci.com/gh/jackharrhy/meowj)
 
 displays json in a flat format.
 
