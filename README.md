@@ -56,4 +56,20 @@ meowj output
 .string = "Hello World"
 ```
 
+Benchmarks
+----------
+
+Using this test data:
+
+```sh
+curl "https://data.nasa.gov/resource/y77d-th95.json" > earth_meteorite_landings.json
+```
+
+| Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
+|:---|---:|---:|---:|---:|
+| `catj earth_meteorite_landings.json` | 267.5 ± 10.7 | 250.7 | 283.4 | 11.3 |
+| `meowj earth_meteorite_landings.json` | 23.7 ± 1.4 | 21.2 | 28.5 | 1.0 |
+
+---
+
 inspired by [catj](https://github.com/soheilpro/catj), but without dependencies on node/npm
