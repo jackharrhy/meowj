@@ -39,7 +39,7 @@ fn handle_value(value: &Value, mut location: &mut String) {
         Value::String(string) => {
             println!("{} = \"{}\"", location, string.to_string().bright_black())
         }
-        Value::Null => (),
+        Value::Null => println!("{} = {}", location, "null".red()),
     };
 }
 
