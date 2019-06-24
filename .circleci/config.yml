@@ -15,6 +15,9 @@ jobs:
             cargo --version
             rustup --version
       - run:
+          name: Clippy
+          command: ./scripts/lint.sh
+      - run:
           name: Test
           command: RUST_BACKTRACE=1 cargo test
 
