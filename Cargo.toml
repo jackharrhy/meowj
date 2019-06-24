@@ -4,8 +4,18 @@ version = "0.1.0"
 authors = ["Jack Arthur Harrhy <me@jackharrhy.com>"]
 edition = "2018"
 
+keywords = [ "cli", "tool", "json" ]
+description = "pancake-ify json"
+repository = "https://github.com/jackharrhy/meowj"
+
+readme = "README.md"
+license = "GPL-3.0-only"
+
+[badges]
+circle-ci = { repository = "jackharrhy/meowj", branch = "master" }
+maintenance = { status = "actively-developed" }
+
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 colored = "1.8"
-
