@@ -7,6 +7,15 @@ displays json in a flat format.
 
 *note: still a very new project, no `--help` or anything yet, also recusrive instead of iterative.*
 
+Install
+-------
+
+Via Cargo
+
+```sh
+cargo install meowj
+```
+
 Usage
 -----
 
