@@ -86,6 +86,7 @@ Alternatives
 ------------
 
 - catj - pretty much the same thing - https://github.com/soheilpro/catj/blob/master/catj.js - Node/NPM
+- tabbyj - also similar - https://github.com/nint8835/tabbyj - Python
 - gron - much more features, such as going _backwards_ given the output of itself, which is quite neat - https://github.com/tomnomnom/gron - Go
 
 ---
