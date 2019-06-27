@@ -2,19 +2,24 @@ use std::env;
 use std::fs;
 use std::io::{self, BufRead, BufReader};
 
-use serde_json::{Map, Value};
+use serde_json::{Deserializer, Map, Value};
 
 use colored::*;
 
 fn handle_array(array: &[Value], mut location: &mut String) {
-    location.push('[');
-    for (index, item) in array.iter().enumerate() {
-        let new_position = format!("{}]", index.to_string().cyan());
-        location.push_str(&new_position);
-        handle_value(&item, &mut location);
-        location.truncate(location.len() - new_position.len());
+    match array.len() {
+        0 => println!("{} = []", location),
+        _ => {
+            location.push('[');
+            for (index, item) in array.iter().enumerate() {
+                let new_position = format!("{}]", index.to_string().cyan());
+                location.push_str(&new_position);
+                handle_value(&item, &mut location);
+                location.truncate(location.len() - new_position.len());
+            }
+            location.pop();
+        }
     }
-    location.pop();
 }
 
 fn handle_object(object: &Map<String, Value>, mut location: &mut String) {
@@ -22,11 +27,17 @@ fn handle_object(object: &Map<String, Value>, mut location: &mut String) {
         location.push('.');
     }
 
-    for (key, value) in object.iter() {
-        location.push_str(key);
-        handle_value(&value, &mut location);
-        location.truncate(location.len() - key.len());
+    match object.len() {
+        0 => println!("{} = {{}}", location),
+        _ => {
+            for (key, value) in object.iter() {
+                location.push_str(key);
+                handle_value(&value, &mut location);
+                location.truncate(location.len() - key.len());
+            }
+        }
     }
+
     location.pop();
 }
 
@@ -50,12 +61,13 @@ fn main() -> io::Result<()> {
         Some(filename) => Box::new(BufReader::new(fs::File::open(filename).unwrap())),
     };
 
-    let base: Value = serde_json::from_reader(reader)?;
+    let stream = Deserializer::from_reader(reader).into_iter::<Value>();
 
-    let mut location = String::new();
-    location.push('.');
-
-    handle_value(&base, &mut location);
+    for value in stream {
+        let mut location = String::new();
+        location.push('.');
+        handle_value(&value.unwrap(), &mut location);
+    }
 
     Ok(())
 }
