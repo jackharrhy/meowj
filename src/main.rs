@@ -28,7 +28,7 @@ fn handle_object(object: &Map<String, Value>, mut location: &mut String) {
     }
 
     match object.len() {
-        0 => println!("{} = {}", location, r#"{}"#),
+        0 => println!("{} = {{}}", location),
         _ => {
             for (key, value) in object.iter() {
                 location.push_str(key);
