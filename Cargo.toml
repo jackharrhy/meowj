@@ -11,11 +11,31 @@ repository = "https://github.com/jackharrhy/meowj"
 readme = "README.md"
 license = "GPL-3.0-only"
 
+[dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+colored = "1.8"
+console_error_panic_hook = { version = "0.1.1", optional = true }
+
+[features]
+default = ["console_error_panic_hook"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.2"
+
+[profile.release]
+opt-level = "s"
+
 [badges]
 circle-ci = { repository = "jackharrhy/meowj", branch = "master" }
 maintenance = { status = "actively-developed" }
 
-[dependencies]
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-colored = "1.8"
+[lib]
+name = "meowj"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "meowj"
+path = "src/bin.rs"
