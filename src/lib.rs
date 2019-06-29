@@ -1,5 +1,5 @@
-use wasm_bindgen::prelude::*;
 use serde_json::{Map, Value};
+use wasm_bindgen::prelude::*;
 
 fn handle_array(array: &[Value], mut location: &mut String, mut collection: &mut Vec<String>) {
     match array.len() {
@@ -17,7 +17,11 @@ fn handle_array(array: &[Value], mut location: &mut String, mut collection: &mut
     }
 }
 
-fn handle_object(object: &Map<String, Value>, mut location: &mut String, mut collection: &mut Vec<String>) {
+fn handle_object(
+    object: &Map<String, Value>,
+    mut location: &mut String,
+    mut collection: &mut Vec<String>,
+) {
     if location.len() != 1 {
         location.push('.');
     }
@@ -55,12 +59,12 @@ fn handle_value(value: &Value, mut location: &mut String, mut collection: &mut V
 
 #[wasm_bindgen]
 pub fn flatten(input: String) -> String {
-    let rep : Value = serde_json::from_str(&input).unwrap();
+    let rep: Value = serde_json::from_str(&input).unwrap();
 
     let mut location = String::new();
     location.push('.');
-    
-    let mut collection : Vec<String> = Vec::new();
+
+    let mut collection: Vec<String> = Vec::new();
 
     handle_value(&rep, &mut location, &mut collection);
 
