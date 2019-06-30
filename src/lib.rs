@@ -13,15 +13,11 @@ fn handle_array(array: &[Value], mut location: &mut String, mut collection: &mut
                 location.truncate(location.len() - new_position.len());
             }
             location.pop();
-        }
+        },
     }
 }
 
-fn handle_object(
-    object: &Map<String, Value>,
-    mut location: &mut String,
-    mut collection: &mut Vec<String>,
-) {
+fn handle_object(object: &Map<String, Value>, mut location: &mut String, mut collection: &mut Vec<String>) {
     if location.len() != 1 {
         location.push('.');
     }
@@ -34,7 +30,7 @@ fn handle_object(
                 handle_value(&value, &mut location, &mut collection);
                 location.truncate(location.len() - key.len());
             }
-        }
+        },
     };
 
     location.pop();
@@ -52,7 +48,7 @@ fn handle_value(value: &Value, mut location: &mut String, mut collection: &mut V
                 location,
                 format!("\"{}\"", string.to_string().escape_debug())
             ));
-        }
+        },
         Value::Null => collection.push(format!("{} = {}", location, "null")),
     };
 }

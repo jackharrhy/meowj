@@ -53,7 +53,7 @@ fn handle_value(value: &Value, mut location: &mut String) {
                 location,
                 format!("\"{}\"", string.to_string().escape_debug()).bright_black()
             );
-        }
+        },
         Value::Null => println!("{} = {}", location, "null".red()),
     };
 }
