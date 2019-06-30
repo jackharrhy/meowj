@@ -5,6 +5,7 @@ authors = ["Jack Arthur Harrhy <me@jackharrhy.com>"]
 edition = "2018"
 
 keywords = [ "cli", "tool", "json" ]
+categories = ["command-line-utilities"]
 description = "pancake-ify json"
 repository = "https://github.com/jackharrhy/meowj"
 
