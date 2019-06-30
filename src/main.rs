@@ -18,7 +18,7 @@ fn handle_array(array: &[Value], mut location: &mut String) {
                 location.truncate(location.len() - new_position.len());
             }
             location.pop();
-        }
+        },
     }
 }
 
@@ -35,7 +35,7 @@ fn handle_object(object: &Map<String, Value>, mut location: &mut String) {
                 handle_value(&value, &mut location);
                 location.truncate(location.len() - key.len());
             }
-        }
+        },
     }
 
     location.pop();
