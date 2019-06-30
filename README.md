@@ -78,9 +78,10 @@ curl "https://data.nasa.gov/resource/y77d-th95.json" > earth_meteorite_landings.
 
 | Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
 |:---|---:|---:|---:|---:|
-| `meowj earth_meteorite_landings.json` | 21.5 ± 1.4 | 20.4 | 30.9 | 1.0 |
-| `gron earth_meteorite_landings.json` | 60.3 ± 2.7 | 54.1 | 65.2 | 2.8 |
-| `catj earth_meteorite_landings.json` | 218.5 ± 7.9 | 207.6 | 231.6 | 10.2 |
+| `meowj earth_meteorite_landings.json` | 30.1 ± 1.4 | 28.7 | 34.9 | 1.0 |
+| `gron earth_meteorite_landings.json` | 60.8 ± 1.9 | 56.1 | 64.9 | 2.0 |
+| `tabbyj --file earth_meteorite_landings.json` | 179.2 ± 4.8 | 172.3 | 189.4 | 5.9 |
+| `catj earth_meteorite_landings.json` | 218.6 ± 7.1 | 207.4 | 231.4 | 7.3 |
 
 Alternatives
 ------------
