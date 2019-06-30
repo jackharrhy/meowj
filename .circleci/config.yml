@@ -15,6 +15,9 @@ jobs:
             cargo --version
             rustup --version
       - run:
+          name: Format
+          command: ./scripts/format.sh
+      - run:
           name: Clippy
           command: ./scripts/lint.sh
       - run:

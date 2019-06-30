@@ -47,9 +47,7 @@ fn handle_value(value: &Value, mut location: &mut String) {
         Value::Array(array) => handle_array(&array, &mut location),
         Value::Bool(boolean) => println!("{} = {}", location, boolean.to_string().yellow()),
         Value::Number(number) => println!("{} = {}", location, number),
-        Value::String(string) => {
-            println!("{} = \"{}\"", location, string.to_string().bright_black())
-        }
+        Value::String(string) => println!("{} = \"{}\"", location, string.to_string().bright_black()),
         Value::Null => println!("{} = {}", location, "null".red()),
     };
 }
