@@ -47,9 +47,24 @@ fn handle_value(value: &Value, mut location: &mut String) {
         Value::Array(array) => handle_array(&array, &mut location),
         Value::Bool(boolean) => println!("{} = {}", location, boolean.to_string().yellow()),
         Value::Number(number) => println!("{} = {}", location, number),
-        Value::String(string) => println!("{} = \"{}\"", location, string.to_string().bright_black()),
+        Value::String(string) => {
+            println!(
+                "{} = {}",
+                location,
+                format!("\"{}\"", string.to_string().escape_debug()).bright_black()
+            );
+        },
         Value::Null => println!("{} = {}", location, "null".red()),
     };
+}
+
+pub fn handle_reader(reader: Box<BufRead>) {
+    let stream = Deserializer::from_reader(reader).into_iter::<Value>();
+    for value in stream {
+        let mut location = String::new();
+        location.push('.');
+        handle_value(&value.unwrap(), &mut location);
+    }
 }
 
 fn main() -> io::Result<()> {
@@ -58,14 +73,6 @@ fn main() -> io::Result<()> {
         None => Box::new(BufReader::new(io::stdin())),
         Some(filename) => Box::new(BufReader::new(fs::File::open(filename).unwrap())),
     };
-
-    let stream = Deserializer::from_reader(reader).into_iter::<Value>();
-
-    for value in stream {
-        let mut location = String::new();
-        location.push('.');
-        handle_value(&value.unwrap(), &mut location);
-    }
-
+    handle_reader(reader);
     Ok(())
 }
