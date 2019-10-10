@@ -31,7 +31,7 @@ fn handle_object(object: &Map<String, Value>, mut location: &mut String) {
         0 => println!("{} = {{}}", location),
         _ => {
             for (key, value) in object.iter() {
-                location.push_str(key);
+                location.push_str(if key.is_empty() { "[\"\"]" } else { key });
                 handle_value(&value, &mut location);
                 location.truncate(location.len() - key.len());
             }
@@ -68,7 +68,7 @@ pub fn handle_reader(reader: Box<BufRead>) {
 }
 
 fn main() -> io::Result<()> {
-    let input = env::args().nth(1);;
+    let input = env::args().nth(1);
     let reader: Box<BufRead> = match input {
         None => Box::new(BufReader::new(io::stdin())),
         Some(filename) => Box::new(BufReader::new(fs::File::open(filename).unwrap())),
